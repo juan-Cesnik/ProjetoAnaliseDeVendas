@@ -1,5 +1,7 @@
 # Análise e Apresentação Executiva de Vendas
 
+![imagem](./relatorios/imagens/VendasPorMesII.png)
+
 Projeto de análise exploratória e visualização de dados desenvolvido em Python, focado em transformar dados brutos de transações comerciais em insights estratégicos para tomada de decisão.
 
 Para este projeto, foi utilizado conjunto de dados disponível no Kaggle para o ano de 2015.
@@ -46,7 +48,7 @@ Lembrando que caso queria colabora faça um fork do meu repositorio para depois 
     ```
 ## Um pouco mais sobre a base
 
-[Clique aqui](referencias/01_dicionario_de_dados.md) aqui para ver o dicionario de dados da base ultlizada.
+[Clique aqui](referencias/Dicionario_de_dados.md) aqui para ver o dicionario de dados da base ultlizada.
 
 ### 1. Desempenho Geral de Vendas
 * **Crescimento Acumulado de +50,47%:** A receita anual saltou de **US$ 479,8 mil (2015)** para **US$ 722,0 mil (2018)**, acumulando um faturamento total de **US$ 2,26 milhões** no período[cite: 1].
