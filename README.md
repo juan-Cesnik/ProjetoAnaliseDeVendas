@@ -1,37 +1,30 @@
-# Modelo de projeto de ciência de dados
+# Análise e Apresentação Executiva de Vendas
 
-Modelo de projeto de ciência de dados para ser utilizado como referência em projetos
-futuros. Desenvolvido por mim, [Francisco Bustamante](https://github.com/chicolucio),
-para alunos iniciantes em ciência de dados de meus cursos e mentorias.
+Projeto de análise exploratória e visualização de dados desenvolvido em Python, focado em transformar dados brutos de transações comerciais em insights estratégicos para tomada de decisão.
 
-Inspiração: [Cookiecutter Data Science](https://drivendata.github.io/cookiecutter-data-science/)
+Para este projeto, foi utilizado conjunto de dados disponível no Kaggle para o ano de 2015.
 
-Clique no botão **Use this template** para criar um novo repositório com base neste modelo.
+ https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting
 
 ## Organização do projeto
 
 ```
-├── .env               <- Arquivo de variáveis de ambiente (não versionar)
 ├── .gitignore         <- Arquivos e diretórios a serem ignorados pelo Git
 ├── ambiente.yml       <- O arquivo de requisitos para reproduzir o ambiente de análise
-├── LICENSE            <- Licença de código aberto se uma for escolhida
+├── LICENSE            <- Licença de código aberto (MIT)
 ├── README.md          <- README principal para desenvolvedores que usam este projeto.
 |
 ├── dados              <- Arquivos de dados para o projeto.
 |
-├── modelos            <- Modelos treinados e serializados, previsões de modelos ou resumos de modelos
-|
-├── notebooks          <- Cadernos Jupyter. A convenção de nomenclatura é um número (para ordenação),
-│                         as iniciais do criador e uma descrição curta separada por `-`, por exemplo
-│                         `01-fb-exploracao-inicial-de-dados`.
+├── notebooks          <- Cadernos Jupyter.
 │
 |   └──src             <- Código-fonte para uso neste projeto.
 |      │
 |      ├── __init__.py  <- Torna um módulo Python
 |      ├── config.py    <- Configurações básicas do projeto
-|      └── graficos.py  <- Scripts para criar visualizações exploratórias e orientadas a resultados
+|      └── estatistica.py  <- funções criadas especificamente para este projeto
 |
-├── referencias        <- Dicionários de dados, manuais e todos os outros materiais explicativos.
+├── referencias        <- Dicionários de dados.
 |
 ├── relatorios         <- Análises geradas em HTML, PDF, LaTeX, etc.
 │   └── imagens        <- Gráficos e figuras gerados para serem usados em relatórios
@@ -42,45 +35,35 @@ Clique no botão **Use this template** para criar um novo repositório com base 
 1. Faça o clone do repositório que será criado a partir deste modelo.
 
     ```bash
-    git clone ENDERECO_DO_REPOSITORIO
+    git clone git@github.com:juan-Cesnik/ProjetoAnaliseDeVendas.git
     ```
+Lembrando que caso queria colabora faça um fork do meu repositorio para depois realizar o pull request e qualquer coisa me mande um Issues.
 
-2. Crie um ambiente virtual para o seu projeto utilizando o gerenciador de ambientes de sua preferência.
+2. Crie um ambiente virtual para o seu projeto utilizando o `conda`.
 
-    a. Caso esteja utilizando o `conda`, exporte as dependências do ambiente para o arquivo `ambiente.yml`:
+    ```bash
+    conda env create -f ambiente.yml --name coloque_o_nome_da_sua_escolha
+    ```
+## Um pouco mais sobre a base
 
-      ```bash
-      conda env export > ambiente.yml
-      ```
+[Clique aqui](referencias/01_dicionario_de_dados.md) aqui para ver o dicionario de dados da base ultlizada.
 
-    b. Caso esteja utilizando outro gerenciador de ambientes, exporte as dependências
-    para o arquivo `requirements.txt` ou outro formato de sua preferência. Adicione o
-    arquivo ao controle de versão, removendo o arquivo `ambiente.yml`.
+### 1. Desempenho Geral de Vendas
+* **Crescimento Acumulado de +50,47%:** A receita anual saltou de **US$ 479,8 mil (2015)** para **US$ 722,0 mil (2018)**, acumulando um faturamento total de **US$ 2,26 milhões** no período[cite: 1].
+* **Recuperação e Tração:** Após uma retração pontual de -4,2% em 2016, as vendas aceleraram com saltos de +30,6% em 2017 e +20,3% em 2018[cite: 1].
+* **Pico Sazonal no 4º Trimestre (Q4):** Os meses de **novembro (US$ 350k)**, **dezembro (US$ 321k)** e **setembro (US$ 300k)** concentraram os maiores volumes de receita anual, impulsionados por datas como *Black Friday* e compras corporativas de final de ano[cite: 1].
+* **Período de Baixa:** **Janeiro e fevereiro** registraram historicamente os menores volumes de venda do ano[cite: 1].
 
-3. Verifique o arquivo `notebooks/01-fb-exemplo.ipynb` para exemplos
-de uso do código.
-4. Renomeie o arquivo `notebooks/01-fb-exemplo.ipynb` para um nome
-mais apropriado ao seu projeto. E siga a convenção de nomenclatura para os demais
-notebooks.
-5. Remova arquivos de exemplo e adicione os arquivos de dados e notebooks do seu
-projeto.
-6. Verifique o arquivo `notebooks/src/config.py` para configurações básicas do projeto.
-Modifique conforme necessário, adicionando ou removendo caminhos de arquivos e
-diretórios.
-7. Atualize o arquivo `referencias/01_dicionario_de_dados.md` com o dicionário de dados
-do seu projeto.
-8. Atualize o `README.md` com informações sobre o seu projeto.
-9. Adicione uma licença ao projeto. Clique
-[aqui](https://docs.github.com/pt/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository)
-se precisar de ajuda para escolher uma licença.
-10. Renomeie o arquivo `.env.exemplo` para `.env`
-11. Adicione variáveis de ambiente sensíveis ao arquivo `.env`.
+---
 
-Por padrão, o arquivo `.gitignore` já está configurado para ignorar arquivos de dados e
-arquivos de Notebook (para aqueles que usam ferramentas como
-[Jupytext](https://jupytext.readthedocs.io/en/latest/) e similares). Adicione ou remova
-outros arquivos e diretórios do `.gitignore` conforme necessário. Caso deseje adicionar
-forçadamente um Notebook ao controle de versão, faça um commit forçado com o
-comando `git add --force NOME_DO_ARQUIVO.ipynb`.
+### 2. Análise por Categorias e Subcategorias
+* **Liderança em Faturamento:** A categoria de **Tecnologia (*Technology*)** liderou as vendas com **US$ 827,4 mil (36,6% do total)**, seguida de **Móveis (*Furniture*)** com **US$ 728,6 mil (32,2%)** e **Materiais de Escritório (*Office Supplies*)** com **US$ 705,4 mil (31,2%)**[cite: 1].
+* **Subcategorias Chave:**
+  * **Telefones (*Phones*)** e **Cadeiras (*Chairs*)** foram os principais motores de faturamento, gerando mais de **US$ 650 mil** combinados (~28,7% da receita total)[cite: 1].
+  * **Materiais de Escritório (*Office Supplies*)** concentrou mais de **60% do volume transacional** (frequência de compras), apesar de ter menor ticket médio por item[cite: 1].
 
-Para mais informações sobre como usar Git e GitHub, [clique aqui](https://cienciaprogramada.com.br/2021/09/guia-definitivo-git-github/). Sobre ambientes virtuais, [clique aqui](https://cienciaprogramada.com.br/2020/08/ambiente-virtual-projeto-python/).
+---
+
+### 3. Produtos em Destaque
+* **Maior Receita (Ticket Alto):** O produto **`Canon imageCLASS 2200 Advanced Copier`** liderou em faturamento bruto, gerando mais de **US$ 61,5 mil** em apenas 5 pedidos[cite: 1].
+* **Maior Recorrência (Volume):** Itens essenciais de escritório apresentaram a maior frequência de vendas, com destaque para **Envelopes (*Staple envelope*)**, **Grampos (*Staples*)** e **Papel sulfite (*Easy-staple paper*)**, todos com mais de 40 transações registradas[cite: 1].
